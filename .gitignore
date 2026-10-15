@@ -1,0 +1,57 @@
+# --- Variáveis de ambiente (contêm SESSION_SECRET e credenciais locais) ---
+.env
+.env.*
+!.env.example
+
+# --- Go: binários e artefatos de build/teste ---
+/bin/
+/build/
+/api
+/demoseed
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.*
+*.coverprofile
+go.work
+go.work.sum
+/vendor/
+
+# --- Frontend (web/ também possui seu próprio .gitignore) ---
+web/node_modules/
+web/dist/
+web/dist-ssr/
+web/.vite/
+*.tsbuildinfo
+*.local
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Dados locais do banco (o docker-compose usa volume nomeado; isto cobre bind mounts/dumps) ---
+pgdata/
+*.dump
+*.sql.gz
+/backups/
+
+# --- Editores e sistema operacional ---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Configurações locais do Claude Code ---
+.claude/settings.local.json

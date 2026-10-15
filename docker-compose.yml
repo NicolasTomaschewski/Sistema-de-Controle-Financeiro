@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: finctrl
+      POSTGRES_PASSWORD: finctrl_local_dev
+      POSTGRES_DB: finctrl
+    ports:
+      - "5432:5432"
+    volumes:
+      - finctrl_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finctrl -d finctrl"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  finctrl_pgdata:

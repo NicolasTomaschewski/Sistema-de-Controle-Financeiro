@@ -1,0 +1,38 @@
+import type { ReactNode } from 'react'
+
+export function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
+  return (
+    <div className="modal-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="modal" role="dialog" aria-modal="true" aria-label={title}>
+        <h3>{title}</h3>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+export function ConfirmDialog({
+  title,
+  message,
+  confirmLabel = 'Confirmar',
+  danger = false,
+  onConfirm,
+  onCancel,
+}: {
+  title: string
+  message: string
+  confirmLabel?: string
+  danger?: boolean
+  onConfirm: () => void
+  onCancel: () => void
+}) {
+  return (
+    <Modal title={title} onClose={onCancel}>
+      <p>{message}</p>
+      <div className="modal__actions">
+        <button type="button" className="btn btn--secondary" onClick={onCancel}>Cancelar</button>
+        <button type="button" className={danger ? 'btn btn--danger' : 'btn'} onClick={onConfirm}>{confirmLabel}</button>
+      </div>
+    </Modal>
+  )
+}
